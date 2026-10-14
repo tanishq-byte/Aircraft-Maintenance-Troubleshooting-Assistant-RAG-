@@ -86,16 +86,24 @@ def prepare_document(
     if not text:
         return None
 
+   
     metadata_fields = (
         "source_system",
         "source_year",
         "event_date",
         "aircraft_make",
         "aircraft_model",
-        "registration_number",
+        "aircraft_serial_number",
+        "component_part_name",
+        "component_part_condition",
+        "location_on_aircraft",
+        "severity_level",
+        "report_type",
+        "geographic_location",
         "data_quality_flags",
-        "source_url",
+        "source_record_hash",
     )
+
 
     metadata = {
         field: record[field]

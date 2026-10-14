@@ -11,19 +11,31 @@ from src.data.prepare_documents import (
 )
 
 
+
 def test_build_document_text():
     record = {
-        "title": "Landing gear fault",
+        "record_id": "TEST-001",
+        "source_system": "SDR",
+        "report_type": "Service Difficulty Report",
+        "aircraft_make": "BOEING",
+        "aircraft_model": "7673Y0",
         "problem_description": "Landing gear did not extend.",
         "investigation_findings": "Hydraulic pressure was low.",
+        "corrective_action": "Hydraulic line inspected.",
+        "component_part_name": "LANDING GEAR",
+        "component_part_condition": "FAULTY",
         "raw_text_narrative": "",
     }
 
     text = build_document_text(record)
 
-    assert "Landing gear fault" in text
+    assert "Service Difficulty Report" in text
+    assert "Aircraft make: BOEING" in text
+    assert "Aircraft model: 7673Y0" in text
     assert "Landing gear did not extend." in text
     assert "Hydraulic pressure was low." in text
+    assert "Hydraulic line inspected." in text
+    assert "Component condition: FAULTY" in text
 
 
 def test_empty_record_is_skipped():
